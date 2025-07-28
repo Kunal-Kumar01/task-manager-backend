@@ -96,7 +96,7 @@ export const verifyEmail = async (req, res) => {
       .json({ success: true, message: "User Verified Successfully!" });
   } catch (error) {
     return res
-      .statu(500)
+      .status(500)
       .json({ success: false, message: "Internal Server Error" });
   }
 };

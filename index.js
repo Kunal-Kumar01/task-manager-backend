@@ -5,7 +5,7 @@ import authRouter from "./routes/auth.routes.js"
 import cleanUnverifiedUsers from "./utils/cleanUp.js";
 
 const app = express();
-dbConnect();
+await dbConnect();
 const port = process.env.PORT || 3000;
 
 app.use(express.json())
@@ -20,7 +20,7 @@ app.get("/", (req, res)=>{
 const CLEANUP_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 setInterval(async () => {
   try {
-    const deleted = await cleanupUnverifiedUsers();
+    const deleted = await cleanUnverifiedUsers();
     console.log(`Scheduled cleanup: removed ${deleted} expired unverified users`);
   } catch (error) {
     console.error("Scheduled cleanup failed:", error);
